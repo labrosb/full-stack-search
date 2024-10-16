@@ -95,32 +95,32 @@ When all the behaviour is implemented, feel free to add some observations or con
 
 **Backend:**
 - Make the server more robust: Implement a MongoDB reconnect mechanism.
-- Add security mechanisms, particularly protecting against dangerous inputs, by using third-party libraries.
+- Add security mechanisms, particularly protecting against dangerous inputs, using third-party libraries.
 
 **Frontend:**
-- Implement a global state to store data for hotels, cities, and countries that are clicked in the search. This will prevent the need for additional queries to retrieve them in the respecrive pages when navigating directly from the search page.
+- Implement a global state to store data for hotels, cities, and countries that are clicked in the search. The global state would prevent additional queries to retrieve them in the respecrive pages when navigating directly from the search page.
 - The `AccommodationSearchPage` component can be broken down into smaller components to follow React best practices for modularity, improving readability, reusability, and maintainability.
 
 ### Write-up : Considerations
-Due to the lack of unique identifiers in the hotels and cities datasets, I used MongoDB's `_id` for searching for a specific hotel or city. This could be problematic if the server restarts, as the `_id` values will change, and the links with the previous IDs will no longer be accessible.
+Due to lack of unique identifiers in the hotels and cities datasets, I used MongoDB's `_id` for searching for a specific hotel or city. This could be problematic if the server restarts, as the `_id` values will change, and the links with the previous IDs will no longer be accessible.
 
 ### Write-up : Dataset Observations
 
 **Hotels:**
 - The naming conventions could be improved. Some keys use snake_case while others do not. It would be best if all keys followed the same pattern, preferably **not camelCase**, to avoid confusion and potential mistakes, as well as to prevent the need to map the response to a front-end-friendly format.
 
-- The `chain_name` contains both "No chain" values and empty strings (`''`). It would be better if these were normalized to a common pattern. In this case, empty values are preferred because "No chain" would also need explicit handling for certain cases (e.g., a search term containing "No chain" would return hotels labeled as such).
+- The `chain_name` contains both "No chain" values and empty strings (`''`). It would be better if these were normalized to a common pattern. Empty values are preferred because "No chain" would need explicit handling for certain cases (e.g., a search term containing "No chain" would return hotels labeled as such).
 
-- The `state` field sometimes refers to an actual state (e.g., in the US), while in other cases it refers to a district or the city itself, and at times it is empty. This inconsistency could lead to logical errors if the data is used for logic involving state-related operations.
+- The `state` field sometimes refers to an actual state (e.g., in the US), while in other cases it refers to a district or the city itself, and at times it is empty. This inconsistency could lead to logical errors.
 
 - I noticed a `zip code` value as `zipcode: '                    '`. If such values aren't handled explicitly, they could lead to bugs.
 
-- The `addressline2` field is mostly empty. It may be better to include this key only when there is a value present.
+- The `addressline2` value is mostly empty. It may be better to include the key only when there is a value present.
 
-- The `country` field could be excluded since it exists in the `countries` dataset and could be joined using `countryisocode`.
+- The `country` value could be excluded since it exists in the `countries` dataset and could be joined using `countryisocode`.
 
 **Cities:**
-- It may be beneficial to include a unique identifier, like an ISO code for cities or some ID, for consistency and to avoid duplicates.
+- It would be beneficial to include a unique identifier, like an ISO code for cities or some ID, for consistency and to avoid duplicates.
 
 **Countries:**
 - It would be more consistent if the `country` key were renamed to `name`, aligning it with the pattern used for `cities`.

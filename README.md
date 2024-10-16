@@ -94,12 +94,12 @@ When all the behaviour is implemented, feel free to add some observations or con
 ### Write-up : Further Improvements
 
 **Backend:**
-- Make the server more robust: Implement a MongoDB reconnect mechanism.
-- Add security mechanisms, particularly protecting against dangerous inputs, using third-party libraries.
+- The server can be more robust: Implement a MongoDB reconnect mechanism, etc.
+- Security mechanisms, particularly protecting against dangerous inputs, can be added, using third-party libraries.
 
 **Frontend:**
-- Implement a global state to store data for hotels, cities, and countries that are clicked in the search. The global state would prevent additional queries to retrieve them in the respecrive pages when navigating directly from the search page.
-- The `AccommodationSearchPage` component can be broken down into smaller components to follow React best practices for modularity, improving readability, reusability, and maintainability.
+- A global state to store data for hotels, cities or countries when clicked in the search list, would be beneficial. It would eliminate the need for additional queries to retrieve them on their respective pages when navigating directly from the search page.
+- The `AccommodationSearchPage` component can be broken down into smaller components, to follow React best practices for modularity.
 
 ### Write-up : Considerations
 Due to lack of unique identifiers in the hotels and cities datasets, I used MongoDB's `_id` for searching for a specific hotel or city. This could be problematic if the server restarts, as the `_id` values will change, and the links with the previous IDs will no longer be accessible.

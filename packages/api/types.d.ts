@@ -1,18 +1,17 @@
 type Hotel = {
-    chain_name: string;
-    hotel_name: string;
-    addressline1: string;
-    addressline2?: string;
-    zipcode: string;
+    name: string;
+    chain: string;
+    addressLine1: string;
+    addressLine2: string;
+    zipCode: string;
     city: string;
     state: string;
     country: string;
-    countryisocode: string;
-    star_rating: number;
+    starRating: number;
   };
   
   type Country = {
-    country: string;
+    name: string;
     countryisocode: string;
   };
   

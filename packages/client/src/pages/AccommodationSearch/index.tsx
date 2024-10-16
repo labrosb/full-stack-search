@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent } from 'react';
-import { MultiSearch } from '../../utils/fetch';
+import { multiSearch } from '../../utils/fetch';
 
 const AccommodationSearchPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,7 +24,7 @@ const AccommodationSearchPage: React.FC = () => {
       return;
     }
     try {
-      const searchResults = await MultiSearch(value);
+      const searchResults = await multiSearch(value);
       setShowClearBtn(true);
       setHotels(searchResults.hotels);
       setCities(searchResults.cities);

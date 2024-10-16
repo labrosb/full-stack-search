@@ -89,17 +89,20 @@ For larger or more time-intensive changes, you're welcome to outline your ideas 
 ### Write-up
 
 <!-- Write-up/conclusion section -->
-When all the behaviour is implemented, feel free to add some observations or conclusions you like to share in the section
+
+_When all the behaviour is implemented, feel free to add some observations or conclusions you like to share in the section_
 ***
 ### Write-up : Further Improvements
 
 **Backend:**
-- The server can be more robust: Implement a MongoDB reconnect mechanism, etc.
-- Security mechanisms, particularly protecting against dangerous inputs, can be added, using third-party libraries.
+- The server can be more robust by implementing a MongoDB `reconnect mechanism`, etc.
+- In a production environment, a mechanism to switch between a development DB instance with MongoMemoryServer and seeded data for development and a persistent MongoDB instance with controlled seeding or migrations for production would be necessary.
+- `Security mechanisms`, particularly protecting against dangerous inputs can be added, using third-party libraries.
 
 **Frontend:**
-- A global state to store data for hotels, cities or countries when clicked in the search list, would be beneficial. It would eliminate the need for additional queries to retrieve them on their respective pages when navigating directly from the search page.
+- A `global state` to store data for hotels, cities or countries when clicked in the search list, would be beneficial. It would eliminate the need for additional queries to retrieve them on their respective pages when navigating directly from the search page.
 - The `AccommodationSearchPage` component can be broken down into smaller components, to follow React best practices for modularity.
+- In a production environment, it's beneficial for certain errors to be handled explicitely. For instance, invalid input errors to correspond to an explicit message in the view. In this version, only `404 errors` are explicitely handled and the rest appear as `Unexpected errors`.
 
 ### Write-up : Considerations
 Due to lack of unique identifiers in the hotels and cities datasets, I used MongoDB's `_id` for searching for a specific hotel or city. This could be problematic if the server restarts, as the `_id` values will change, and the links with the previous IDs will no longer be accessible.

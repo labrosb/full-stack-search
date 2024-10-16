@@ -1,5 +1,8 @@
 import { useState, type ChangeEvent } from 'react';
+import { debounce } from 'lodash';
 import { multiSearch } from '../../utils/fetch';
+
+const DEBOUNCE_TIME =  150;
 
 const AccommodationSearchPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,6 +19,20 @@ const AccommodationSearchPage: React.FC = () => {
     setShowClearBtn(false);
   };
 
+  // Debounced search function
+  const search = (
+    debounce(async (value: string) => {
+      try {
+        const searchResults = await multiSearch(value);
+        setShowClearBtn(true);
+        setHotels(searchResults.hotels);
+        setCities(searchResults.cities);
+        setCountries(searchResults.countries);
+      } catch (err) {
+        resetValues();
+      }
+    }, DEBOUNCE_TIME));
+
   const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value ;
     setSearchTerm(value);
@@ -23,15 +40,7 @@ const AccommodationSearchPage: React.FC = () => {
       resetValues();
       return;
     }
-    try {
-      const searchResults = await multiSearch(value);
-      setShowClearBtn(true);
-      setHotels(searchResults.hotels);
-      setCities(searchResults.cities);
-      setCountries(searchResults.countries);
-    } catch (err) {
-      resetValues();
-    }
+    search(value);
   };
 
   const handleButtonXClick = () => {

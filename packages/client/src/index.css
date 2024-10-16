@@ -90,3 +90,12 @@ body {
   padding: 0;
   margin: 0;
 }
+
+.box {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 30px 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  margin: 20px auto;
+}

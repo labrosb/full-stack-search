@@ -89,10 +89,9 @@ For larger or more time-intensive changes, you're welcome to outline your ideas 
 ### Write-up
 
 <!-- Write-up/conclusion section -->
-
-_When all the behaviour is implemented, feel free to add some observations or conclusions you like to share in the section_
-
-### - Further Improvements :
+When all the behaviour is implemented, feel free to add some observations or conclusions you like to share in the section
+***
+### Write-up : Further Improvements
 
 **Backend:**
 - Make the server more robust: Implement a MongoDB reconnect mechanism.
@@ -102,10 +101,10 @@ _When all the behaviour is implemented, feel free to add some observations or co
 - Implement a global state to store data for hotels, cities, and countries that are clicked in the search. This will prevent the need for additional queries to retrieve them in the respecrive pages when navigating directly from the search page.
 - The `AccommodationSearchPage` component can be broken down into smaller components to follow React best practices for modularity, improving readability, reusability, and maintainability.
 
-### - Considerations :
+### Write-up : Considerations
 Due to the lack of unique identifiers in the hotels and cities datasets, I used MongoDB's `_id` for searching for a specific hotel or city. This could be problematic if the server restarts, as the `_id` values will change, and the links with the previous IDs will no longer be accessible.
 
-### - Dataset Observations :
+### Write-up : Dataset Observations
 
 **Hotels:**
 - The naming conventions could be improved. Some keys use snake_case while others do not. It would be best if all keys followed the same pattern, preferably **not camelCase**, to avoid confusion and potential mistakes, as well as to prevent the need to map the response to a front-end-friendly format.
@@ -125,8 +124,7 @@ Due to the lack of unique identifiers in the hotels and cities datasets, I used 
 
 **Countries:**
 - It would be more consistent if the `country` key were renamed to `name`, aligning it with the pattern used for `cities`.
-
-
+***
 
 ### Database structure
 

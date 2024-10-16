@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCountryByIso, QueryError } from '../../utils/fetch';
+import InfoBox from '../../components/infoBox';
 
 const CountryPage: React.FC = () => {
   const { isoCode } = useParams<{ isoCode: string }>();
@@ -28,24 +29,12 @@ const CountryPage: React.FC = () => {
   }, [isoCode]);
 
   if (notFound) {
-    return(
-      <div className="container">
-        <div className="box">
-          <h4 className="text-center">Country not found!</h4>
-        </div>
-      </div>
-    );
-  };
+    return <InfoBox label="Country not found!" />;
+  }
 
   if (finishedFetching && !country.name) {
-    return(
-      <div className="container">
-        <div className="box">
-          <h4 className="text-center">Unexpected Error</h4>
-        </div>
-      </div>
-    );
-  };
+    return <InfoBox label="Unexpected Error!" />;
+  }
 
   return (
     <div className="container">

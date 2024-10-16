@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchHotelById, QueryError } from '../../utils/fetch';
+import InfoBox from '../../components/infoBox';
 
 const HotelPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -28,24 +29,12 @@ const HotelPage: React.FC = () => {
   }, [id]);
 
   if (notFound) {
-    return(
-      <div className="container">
-        <div className="box">
-          <h4 className="text-center">Hotel not found!</h4>
-        </div>
-      </div>
-    );
-  };
+    return <InfoBox label="Hotel not found!" />;
+  }
 
   if (finishedFetching && !hotel.name) {
-    return(
-      <div className="container">
-        <div className="box">
-          <h4 className="text-center">Unexpected Error</h4>
-        </div>
-      </div>
-    );
-  };
+    return <InfoBox label="Unexpected Error!" />;
+  }
 
   return (
     <div className="container">

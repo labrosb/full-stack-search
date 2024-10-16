@@ -102,7 +102,7 @@ _When all the behaviour is implemented, feel free to add some observations or co
 **Frontend:**
 - A `global state` to store data for hotels, cities or countries when clicked in the search list, would be beneficial. It would eliminate the need for additional queries to retrieve them on their respective pages when navigating directly from the search page.
 - The `AccommodationSearchPage` component can be broken down into smaller components, to follow React best practices for modularity.
-- In a production environment, it's beneficial for certain errors to be handled explicitely. For instance, invalid input errors to correspond to an explicit message in the view. In this version, only `404 errors` are explicitely handled and the rest appear as `Unexpected errors`.
+- In a production environment, it's beneficial to handle certain errors explicitly. For example, invalid input errors should display a specific message in the UI. In this version, only `404 errors` are explicitly handled, while all other errors are shown as `Unexpected error`.
 
 ### Write-up : Considerations
 Due to lack of unique identifiers in the hotels and cities datasets, I used MongoDB's `_id` for searching for a specific hotel or city. This could be problematic if the server restarts, as the `_id` values will change, and the links with the previous IDs will no longer be accessible.
@@ -110,9 +110,9 @@ Due to lack of unique identifiers in the hotels and cities datasets, I used Mong
 ### Write-up : Dataset Observations
 
 **Hotels:**
-- The naming conventions could be improved. Some keys use snake_case while others do not. It would be best if all keys followed the same pattern, preferably **not camelCase**, to avoid confusion and potential mistakes, as well as to prevent the need to map the response to a front-end-friendly format.
+- The naming conventions could be improved. Some keys use snake_case while others do not. For consistency, it would be best if all keys followed the same pattern, preferably **not camelCase**, to eliminate the need to map the response to a frontend friendly format.
 
-- The `chain_name` contains both "No chain" values and empty strings (`''`). It would be better if these were normalized to a common pattern. Empty values are preferred because "No chain" would need explicit handling for certain cases (e.g., a search term containing "No chain" would return hotels labeled as such).
+- The `chain_name` contains both `'No chain'` values and empty strings (`''`). These could be normalized to a common pattern. Empty values are preferred, because `'No chain'`values need explicit handling for certain cases (e.g: a search term containing "No chain", or a substring of it, would include also registrations with `chain_name: 'No chain'` in the results).
 
 - The `state` field sometimes refers to an actual state (e.g., in the US), while in other cases it refers to a district or the city itself, and at times it is empty. This inconsistency could lead to logical errors.
 

@@ -19,7 +19,7 @@ const AccommodationSearchPage: React.FC = () => {
   const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value ;
     setSearchTerm(value);
-    if (value === '') {
+    if (value.trim() === '') {
       resetValues();
       return;
     }
